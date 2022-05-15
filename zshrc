@@ -1,6 +1,8 @@
 alias gdiff='git diff --cached'
 alias glog='git log --graph --oneline --decorate'
 alias gir='f(){grep -ir $@ .; unset -f f; }; f'
+alias ls='ls -G'
+
 function cdl(){
   if [[ $1 == "-" ]]
   then 
@@ -10,8 +12,3 @@ function cdl(){
   fi
 }
 alias ls='ls -G'
-
-powerlevel 10k
-jq
-aspell
-awscli
