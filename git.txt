@@ -1,0 +1,4 @@
+git merge thing
+git reset HEAD file - bring file from repo to index
+git log --grep thing --oneline
+git checkout origin/main <branch>

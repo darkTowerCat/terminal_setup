@@ -1,0 +1,3 @@
+aws_iam_policy: allows a resource to do something
+assume_role_policy : controls what can use iam policy
+aws_iam_role_policy_attachment: combine role and iam policies

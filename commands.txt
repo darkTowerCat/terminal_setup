@@ -1,0 +1,4 @@
+nmap -Pn <address> -p<port>
+nMAP -Pn <cidr> -p22
+which systemctl
+systemctl <command> <status>

@@ -1,0 +1,34 @@
+terraform state list
+terraform state show <resource>
+terraform state rm
+
+aws_iam_policy - allows resource to do something
+assume_role_policy - what can assume policy
+aws_iam_role_policy_attachment - combine role and iam policy
+
+terraform graph | dot -Tsvg > graph.svg
+
+contains(["env1", "env2"], var.env) ? "output1" : "output2"
+
+is_prod = contains(["env1", "env2"], var.env)
+allow_force_destroy = local.is_prod == true ? true : false
+
+- module uses templatefile(json) sets policy using list of dictionarys that have sid, effect, action, and resource
+resource "aws_iam_role" "main" 
+resource "aws_iam_policy" "main"
+resource "aws_iam_role_policy_attachment" "main"
+resource "aws_iam_instance_profile" "main" {
+  count = var.profile ? 1 : 0
+}
+data "aws_iam_policy_document" "assume_policy" {}
+data "aws_iam_policy_document" "role_policy" {}
+provider "aws" {
+  version = "~> 3.75"
+  default_tags {
+    tags = local.tags
+  }
+}
+
+
+caller- resource "aws_iam_policy" "" {policy=templatefile("location.tmpl", {resources = {"secrets" = ["arn"]}})}
+module- "Resource": ${jsonencode([ for resource in resources.secrets : "${resource}-??????" ])}

@@ -1,0 +1,18 @@
+ssh-add <private key>
+ssh-keygen -t ed25519
+
+.ssh/config
+# GitHub
+Host github.com
+  IdentityFile ~/.ssh/laptop
+
+Host *
+  ForwardAgent yes
+  SetEnv LC_ALL="en_US.UTC-8"
+
+# Env
+Host <name>
+  Hostname <ip/dns>
+  User <username>
+  IdentityFile ~/.ssh/<name of private key>
+  # proxycommand ssh <host> -W %h:%p

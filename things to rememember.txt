@@ -1,0 +1,9 @@
+bad 
+QA without pull
+set ensure to absent for new hire
+
+good
+better trouble shooting
+ IAM
+ proxy
+ Not using it, them, we, you

@@ -1,0 +1,39 @@
+while getops ":e: :r: :s:" OPTION; do
+	case $OPTION in
+	e) 
+	  ENV=$OPTARG
+	  ;;
+	*)
+	  bad_input
+	  ;;
+	esac
+done
+===========
+if [[ "$line" == *'country'* ]]; then
+	country=$(echo $line | awk '{print $2}');
+fi
+========
+for n in `seq 16 19`; do puppet cert sign proxy${n}.com; done
+=================
+
+while true; do if [[$(aws ec2 describe-instance-status --instance-ids <identifier> | jq -r '.[]|.[0].InstanceState.Name') == running]]; then; echo "Not running"; fi && sleep 1; done
+
+!!:$ - get argument from prevous command
+$? - get return code from prevous command
+
+curl www.google.com | grep "google\.com" --color
+
+#!/usr/bin/env python3
+
+================
+for n in `cat doc.txt`; do
+echo $n >> doc2.txt
+sudo nmap -Pn $n | tee >> doc2.txt
+echo "======\n"
+done
+
+nmap -sP -iLinpy-ips -oG inpt-responding-hosts
+=============
+aspell
+shellcheck
+nmap -Pn 
