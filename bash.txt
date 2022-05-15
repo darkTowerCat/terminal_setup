@@ -37,3 +37,8 @@ nmap -sP -iLinpy-ips -oG inpt-responding-hosts
 aspell
 shellcheck
 nmap -Pn 
+powerlevel 10k
+oh my zesh
+jq
+aspell
+awscli
