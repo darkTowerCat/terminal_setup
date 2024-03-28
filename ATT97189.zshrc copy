@@ -1,0 +1,69 @@
+# recommend installing powerlevel10k
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# default directory color is hard to see when using above them
+export CLICOLOR=1
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#docker commands
+alias ecrlogin='aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 171267611104.dkr.ecr.us-east-1.amazonaws.com'
+alias dra='docker rm $(docker ps -a -q)'
+alias dsa='docker start $(docker ps -a -q)'
+alias dka='docker kill $(docker ps -q)'
+alias dsa='docker start $(docker ps -a -q)'
+
+# git commands
+alias gcam='~/repos/radiator-springs/git-assist/git_assist.py'
+alias gco='git checkout'
+alias gsh='git push'
+alias gl='git pull'
+alias gs='git status'
+
+# helpful commands
+alias getip='curl icanhazip.com'
+alias gir='f(){grep -ir --color=always --exclude-dir=.terraform $@ .; unset -f f; }; f'
+
+# terraform
+alias tf=terraform
+alias tfclean='rm -rf .terraform && rm .terraform.lock.hcl'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfpo='terraform plan --out=plan'
+
+# AWS profile commands
+export AWS_PROFILE=base  #default profile
+alias base="export AWS_PROFILE=base" #base account
+alias prod="export AWS_PROFILE=prod" #production account
+
+# AWS shortcuts
+alias getcaller='aws sts get-caller-identity'
+alias getcreds='aws sso login'
+alias ssm='aws ssm start-session --target $1'
+
+# navigation
+alias gogha=cd-workflows
+
+# refreash credentials for all profiles
+refresh_creds=0
+for expiry in `grep aws_session_expiration ~/.aws/credentials | awk '{print $3}'`; do
+ if [[ `gdate -d $expiry +%s` -lt `date +%s` ]]; then
+    refresh_creds=1
+ fi
+done
+
+if [[ $refresh_creds -gt 0 ]]; then
+  aws sso login
+  yawsso
+fi
+
+# move to workfows directory
+function cd-workflows() {
+  BASE=$(echo $PWD | cut -f 1,2,3,4,5 -d "/")
+  echo $BASE/.github/workflows
+  cd $BASE/.github/workflows
+}
+
