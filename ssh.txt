@@ -6,13 +6,16 @@ ssh-keygen -t ed25519
 Host github.com
   IdentityFile ~/.ssh/laptop
 
-Host *
-  ForwardAgent yes
-  SetEnv LC_ALL="en_US.UTC-8"
+# Host *
+#   ForwardAgent yes
+#   SetEnv LC_ALL="en_US.UTC-8"
 
-# Env
+# Framework
 Host <name>
   Hostname <ip/dns>
   User <username>
   IdentityFile ~/.ssh/<name of private key>
   # proxycommand ssh <host> -W %h:%p
+
+Host i-* mi-*
+  ProxyCommand sh -c "aws ssm start-session --target %h"
